@@ -33,7 +33,7 @@ controls.
 ## How it works
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Google Form submit] --> B{Complete?}
     B -- no --> C[Email requester: what is missing]
     C -. resubmits .-> A
