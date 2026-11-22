@@ -1,0 +1,8 @@
+# clasp: links this folder to a specific Apps Script project (personal)
+.clasp.json
+.clasprc.json
+.deployment-id
+
+node_modules/
+.DS_Store
+Thumbs.db
