@@ -35,16 +35,18 @@ controls.
 ```mermaid
 flowchart TD
     A[Google Form submit] --> B{Complete?}
-    B -->|no| C[Email requester:<br/>what's missing] -.resubmit.-> A
-    B -->|yes| D[Claude Sonnet 5.5:<br/>budget line + summary + concerns]
-    D --> E[Budget check · tier lookup · PDF]
-    E --> F[Approver 1 email<br/>Approve / Reject]
-    F -->|reject| R[Rejected → notify requester]
-    F -->|approve, small| OK[Approved → deduct budget → notify]
-    F -->|approve, large| G[Approver 2 email]
-    G -->|approve| OK
-    G -->|reject| R
-    H[Daily 8 AM] -.>48h pending.-> F & G
+    B -- no --> C[Email requester: what is missing]
+    C -. resubmits .-> A
+    B -- yes --> D[Claude: budget line, summary, concerns]
+    D --> E[Budget check, tier lookup, PDF]
+    E --> F[Approver 1 email: Approve or Reject]
+    F -- reject --> R[Rejected, requester notified]
+    F -- approve, small --> OK[Approved, budget deducted, requester notified]
+    F -- approve, large --> G[Approver 2 email]
+    G -- approve --> OK
+    G -- reject --> R
+    H[Daily 8 AM reminders] -. pending over 48h .-> F
+    H -. pending over 48h .-> G
 ```
 
 **AI advises, code decides.** Claude only classifies and summarizes. Tiers, thresholds, budget math, and routing are
